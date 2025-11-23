@@ -12,7 +12,6 @@
    <!-- Icons -->
    <script src="https://unpkg.com/lucide@latest"></script>
 
-
    <style>
        /* Custom smooth transitions */
        .tab-content {
@@ -34,7 +33,6 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
-
    <!-- Navigation Bar -->
    <nav class="bg-white shadow-md sticky top-0 z-50">
        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,7 +50,6 @@
                    <button onclick="switchTab('about')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition">About Us</button>
                </div>
 
-
                <!-- Mobile menu button -->
                <div class="md:hidden flex items-center">
                    <button onclick="toggleMobileMenu()" class="text-gray-500 hover:text-gray-700 focus:outline-none">
@@ -61,7 +58,6 @@
                </div>
            </div>
        </div>
-
 
        <!-- Mobile Menu Panel -->
        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
@@ -74,10 +70,8 @@
        </div>
    </nav>
 
-
    <!-- MAIN CONTENT AREA -->
    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
-
 
        <!-- 1. HOME TAB -->
        <div id="home" class="tab-content active">
@@ -100,7 +94,6 @@
                    </div>
                </div>
            </div>
-
 
            <!-- Features Grid -->
            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
@@ -128,7 +121,6 @@
            </div>
        </div>
 
-
        <!-- 2. EXAMS TAB -->
        <div id="exams" class="tab-content">
            <h2 class="text-3xl font-bold text-gray-900 mb-8">Select Your Exam</h2>
@@ -138,13 +130,11 @@
                <input type="text" id="examSearch" onkeyup="filterExams()" placeholder="Search for exams (e.g. JEE, Railway)..." class="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
            </div>
 
-
            <!-- Exam Cards Grid -->
            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="examGrid">
                <!-- Exam Card Template (Repeated via JS below) -->
            </div>
        </div>
-
 
        <!-- 3. MOCK LIST (Hidden initially, shown when an exam is clicked) -->
        <div id="mock-list-view" class="tab-content hidden">
@@ -188,7 +178,6 @@
                </div>
            </div>
        </div>
-
 
        <!-- 4. EVENTS TAB -->
        <div id="events" class="tab-content">
@@ -237,7 +226,6 @@
            </div>
        </div>
 
-
        <!-- 5. ABOUT TAB -->
        <div id="about" class="tab-content">
            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
@@ -266,9 +254,7 @@
            </div>
        </div>
 
-
    </main>
-
 
    <!-- Footer -->
    <footer class="bg-white border-t mt-12">
@@ -279,27 +265,163 @@
        </div>
    </footer>
 
-
    <!-- JAVASCRIPT LOGIC -->
    <script>
        // --- 1. Data Configuration ---
-       // This is where you define your exams. Add more as needed.
+       // UPDATED: Added ~10 placeholders per category for easy editing.
        const examsData = [
-           { id: 'jee', name: 'JEE Mains', category: 'Engineering', icon: 'cpu', color: 'blue', mocks: [
-               { title: 'JEE Mains 2025 - Full Mock 1', duration: '3 Hours', qs: 90, link: 'https://script.google.com/macros/s/AKfycbx7k_fR1Kz2TAjN5Izd2GQuYMfatSc-uY6wtSnl9eMrGGCg30QjnZGAx2QJnwOF9trD/exec' },
-               { title: 'Physics Chapter Wise - Mechanics', duration: '1 Hour', qs: 30, link: '#' }
-           ]},
-           { id: 'gate', name: 'GATE CS', category: 'Engineering', icon: 'server', color: 'green', mocks: [
-               { title: 'GATE CS 2025 - Mock 1', duration: '3 Hours', qs: 65, link: '#' }
-           ]},
-           { id: 'cat', name: 'CAT', category: 'Management', icon: 'briefcase', color: 'purple', mocks: [
-                { title: 'CAT Verbal Ability Mock', duration: '40 Mins', qs: 24, link: '#' }
-           ]},
-           { id: 'neet', name: 'NEET UG', category: 'Medical', icon: 'heart-pulse', color: 'red', mocks: []},
-           { id: 'upsc', name: 'UPSC Prelims', category: 'Civil Services', icon: 'landmark', color: 'yellow', mocks: []},
-           { id: 'ssc', name: 'SSC CGL', category: 'Govt Jobs', icon: 'file-text', color: 'indigo', mocks: []},
-           { id: 'rrb', name: 'Railways (RRB)', category: 'Govt Jobs', icon: 'train', color: 'orange', mocks: []},
-           { id: 'kvs', name: 'KVS TGT/PGT', category: 'Teaching', icon: 'book', color: 'pink', mocks: []}
+           { 
+               id: 'jee', 
+               name: 'JEE Mains', 
+               category: 'Engineering', 
+               icon: 'cpu', 
+               color: 'blue', 
+               mocks: [
+                   { title: 'JEE Mains 2025 - Full Mock 1', duration: '3 Hours', qs: 90, link: 'https://script.google.com/macros/s/AKfycbx7k_fR1Kz2TAjN5Izd2GQuYMfatSc-uY6wtSnl9eMrGGCg30QjnZGAx2QJnwOF9trD/exec' },
+                   { title: 'JEE Mains 2025 - Full Mock 2', duration: '3 Hours', qs: 90, link: '#' },
+                   { title: 'JEE Mains 2025 - Full Mock 3', duration: '3 Hours', qs: 90, link: '#' },
+                   { title: 'JEE Mains 2025 - Full Mock 4', duration: '3 Hours', qs: 90, link: '#' },
+                   { title: 'JEE Mains 2025 - Full Mock 5', duration: '3 Hours', qs: 90, link: '#' },
+                   { title: 'Physics - Mechanics Review', duration: '1 Hour', qs: 30, link: '#' },
+                   { title: 'Physics - Electrostatics', duration: '1 Hour', qs: 30, link: '#' },
+                   { title: 'Maths - Calculus Deep Dive', duration: '1 Hour', qs: 25, link: '#' },
+                   { title: 'Chemistry - Organic Conversions', duration: '1 Hour', qs: 30, link: '#' },
+                   { title: 'JEE Previous Year Paper (2024)', duration: '3 Hours', qs: 90, link: '#' }
+               ]
+           },
+           { 
+               id: 'gate', 
+               name: 'GATE CS', 
+               category: 'Engineering', 
+               icon: 'server', 
+               color: 'green', 
+               mocks: [
+                   { title: 'GATE CS 2025 - Mock 1', duration: '3 Hours', qs: 65, link: '#' },
+                   { title: 'GATE CS 2025 - Mock 2', duration: '3 Hours', qs: 65, link: '#' },
+                   { title: 'GATE CS 2025 - Mock 3', duration: '3 Hours', qs: 65, link: '#' },
+                   { title: 'GATE CS 2025 - Mock 4', duration: '3 Hours', qs: 65, link: '#' },
+                   { title: 'GATE CS 2025 - Mock 5', duration: '3 Hours', qs: 65, link: '#' },
+                   { title: 'Operating Systems - Topic Test', duration: '45 Mins', qs: 20, link: '#' },
+                   { title: 'DBMS - Normalization Quiz', duration: '30 Mins', qs: 15, link: '#' },
+                   { title: 'Algorithms & Data Structures', duration: '1 Hour', qs: 25, link: '#' },
+                   { title: 'Computer Networks - TCP/IP', duration: '45 Mins', qs: 20, link: '#' },
+                   { title: 'General Aptitude For GATE', duration: '1 Hour', qs: 30, link: '#' }
+               ]
+           },
+           { 
+               id: 'cat', 
+               name: 'CAT', 
+               category: 'Management', 
+               icon: 'briefcase', 
+               color: 'purple', 
+               mocks: [
+                   { title: 'CAT 2025 - Full Length Mock 1', duration: '2 Hours', qs: 66, link: '#' },
+                   { title: 'CAT 2025 - Full Length Mock 2', duration: '2 Hours', qs: 66, link: '#' },
+                   { title: 'CAT 2025 - Full Length Mock 3', duration: '2 Hours', qs: 66, link: '#' },
+                   { title: 'CAT 2025 - Full Length Mock 4', duration: '2 Hours', qs: 66, link: '#' },
+                   { title: 'VARC Sectional Test 1', duration: '40 Mins', qs: 24, link: '#' },
+                   { title: 'VARC Sectional Test 2', duration: '40 Mins', qs: 24, link: '#' },
+                   { title: 'DILR Sectional Test 1', duration: '40 Mins', qs: 20, link: '#' },
+                   { title: 'DILR Sectional Test 2', duration: '40 Mins', qs: 20, link: '#' },
+                   { title: 'QA Sectional Test 1', duration: '40 Mins', qs: 22, link: '#' },
+                   { title: 'QA Sectional Test 2', duration: '40 Mins', qs: 22, link: '#' }
+               ]
+           },
+           { 
+               id: 'neet', 
+               name: 'NEET UG', 
+               category: 'Medical', 
+               icon: 'heart-pulse', 
+               color: 'red', 
+               mocks: [
+                   { title: 'NEET 2025 - Full Mock 1', duration: '3h 20m', qs: 200, link: '#' },
+                   { title: 'NEET 2025 - Full Mock 2', duration: '3h 20m', qs: 200, link: '#' },
+                   { title: 'NEET 2025 - Full Mock 3', duration: '3h 20m', qs: 200, link: '#' },
+                   { title: 'NEET 2025 - Full Mock 4', duration: '3h 20m', qs: 200, link: '#' },
+                   { title: 'NEET 2025 - Full Mock 5', duration: '3h 20m', qs: 200, link: '#' },
+                   { title: 'Botany - Plant Physiology', duration: '1 Hour', qs: 50, link: '#' },
+                   { title: 'Zoology - Human Physiology', duration: '1 Hour', qs: 50, link: '#' },
+                   { title: 'Chemistry - Inorganic', duration: '1 Hour', qs: 50, link: '#' },
+                   { title: 'Physics - Optics & Waves', duration: '1 Hour', qs: 45, link: '#' },
+                   { title: 'Biology - Genetics Unit Test', duration: '1 Hour', qs: 60, link: '#' }
+               ]
+           },
+           { 
+               id: 'upsc', 
+               name: 'UPSC Prelims', 
+               category: 'Civil Services', 
+               icon: 'landmark', 
+               color: 'yellow', 
+               mocks: [
+                   { title: 'UPSC CSE Prelims - GS Paper 1 (Mock 1)', duration: '2 Hours', qs: 100, link: '#' },
+                   { title: 'UPSC CSE Prelims - GS Paper 1 (Mock 2)', duration: '2 Hours', qs: 100, link: '#' },
+                   { title: 'UPSC CSE Prelims - GS Paper 1 (Mock 3)', duration: '2 Hours', qs: 100, link: '#' },
+                   { title: 'UPSC CSE Prelims - GS Paper 1 (Mock 4)', duration: '2 Hours', qs: 100, link: '#' },
+                   { title: 'UPSC CSE Prelims - GS Paper 1 (Mock 5)', duration: '2 Hours', qs: 100, link: '#' },
+                   { title: 'UPSC CSAT - Paper 2 (Mock 1)', duration: '2 Hours', qs: 80, link: '#' },
+                   { title: 'UPSC CSAT - Paper 2 (Mock 2)', duration: '2 Hours', qs: 80, link: '#' },
+                   { title: 'UPSC CSAT - Paper 2 (Mock 3)', duration: '2 Hours', qs: 80, link: '#' },
+                   { title: 'Current Affairs - Jan 2025', duration: '1 Hour', qs: 50, link: '#' },
+                   { title: 'Indian Polity - Sectional', duration: '1 Hour', qs: 50, link: '#' }
+               ]
+           },
+           { 
+               id: 'ssc', 
+               name: 'SSC CGL', 
+               category: 'Govt Jobs', 
+               icon: 'file-text', 
+               color: 'indigo', 
+               mocks: [
+                   { title: 'SSC CGL Tier-1 Full Mock 1', duration: '1 Hour', qs: 100, link: '#' },
+                   { title: 'SSC CGL Tier-1 Full Mock 2', duration: '1 Hour', qs: 100, link: '#' },
+                   { title: 'SSC CGL Tier-1 Full Mock 3', duration: '1 Hour', qs: 100, link: '#' },
+                   { title: 'SSC CGL Tier-1 Full Mock 4', duration: '1 Hour', qs: 100, link: '#' },
+                   { title: 'SSC CGL Tier-1 Full Mock 5', duration: '1 Hour', qs: 100, link: '#' },
+                   { title: 'Quantitative Aptitude - Arithmetic', duration: '30 Mins', qs: 25, link: '#' },
+                   { title: 'Quantitative Aptitude - Advance', duration: '30 Mins', qs: 25, link: '#' },
+                   { title: 'General Intelligence - Reasoning', duration: '30 Mins', qs: 25, link: '#' },
+                   { title: 'English Comprehension Test', duration: '30 Mins', qs: 25, link: '#' },
+                   { title: 'General Awareness - History', duration: '20 Mins', qs: 25, link: '#' }
+               ]
+           },
+           { 
+               id: 'rrb', 
+               name: 'Railways (RRB)', 
+               category: 'Govt Jobs', 
+               icon: 'train', 
+               color: 'orange', 
+               mocks: [
+                   { title: 'RRB NTPC Stage 1 - Mock 1', duration: '90 Mins', qs: 100, link: '#' },
+                   { title: 'RRB NTPC Stage 1 - Mock 2', duration: '90 Mins', qs: 100, link: '#' },
+                   { title: 'RRB NTPC Stage 1 - Mock 3', duration: '90 Mins', qs: 100, link: '#' },
+                   { title: 'RRB NTPC Stage 1 - Mock 4', duration: '90 Mins', qs: 100, link: '#' },
+                   { title: 'RRB NTPC Stage 1 - Mock 5', duration: '90 Mins', qs: 100, link: '#' },
+                   { title: 'RRB Group D - Full Mock 1', duration: '90 Mins', qs: 100, link: '#' },
+                   { title: 'RRB Group D - Full Mock 2', duration: '90 Mins', qs: 100, link: '#' },
+                   { title: 'RRB ALP (Assistant Loco Pilot) Test', duration: '60 Mins', qs: 75, link: '#' },
+                   { title: 'Railways - General Science', duration: '30 Mins', qs: 40, link: '#' },
+                   { title: 'Railways - Mathematics', duration: '45 Mins', qs: 30, link: '#' }
+               ]
+           },
+           { 
+               id: 'kvs', 
+               name: 'KVS TGT/PGT', 
+               category: 'Teaching', 
+               icon: 'book', 
+               color: 'pink', 
+               mocks: [
+                   { title: 'KVS PGT - Computer Science Mock 1', duration: '3 Hours', qs: 180, link: '#' },
+                   { title: 'KVS PGT - Computer Science Mock 2', duration: '3 Hours', qs: 180, link: '#' },
+                   { title: 'KVS PGT - Computer Science Mock 3', duration: '3 Hours', qs: 180, link: '#' },
+                   { title: 'KVS PGT - Mathematics Mock 1', duration: '3 Hours', qs: 180, link: '#' },
+                   { title: 'KVS PGT - Physics Mock 1', duration: '3 Hours', qs: 180, link: '#' },
+                   { title: 'KVS TGT - Science Mock 1', duration: '3 Hours', qs: 180, link: '#' },
+                   { title: 'KVS TGT - Science Mock 2', duration: '3 Hours', qs: 180, link: '#' },
+                   { title: 'General Paper (Part I) - Languages', duration: '30 Mins', qs: 20, link: '#' },
+                   { title: 'General Paper (Part II) - Reasoning', duration: '30 Mins', qs: 20, link: '#' },
+                   { title: 'Pedagogy & Teaching Aptitude', duration: '1 Hour', qs: 40, link: '#' }
+               ]
+           }
        ];
 
 
@@ -441,7 +563,6 @@
        renderExams();
        // Ensure Home is visible on load
        switchTab('home');
-
 
    </script>
 </body>
