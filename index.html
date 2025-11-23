@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>WikiPariksha - Open Source Exam Platform</title>
+   <meta name="description" content="Free open source mock test platform for JEE, GATE, CAT, and more.">
+  
+   <!-- Tailwind CSS for modern styling -->
+   <script src="https://cdn.tailwindcss.com"></script>
+  
+   <!-- Icons -->
+   <script src="https://unpkg.com/lucide@latest"></script>
+
+
+   <style>
+       /* Custom smooth transitions */
+       .tab-content {
+           display: none;
+           animation: fadeIn 0.3s ease-in-out;
+       }
+       .tab-content.active {
+           display: block;
+       }
+       @keyframes fadeIn {
+           from { opacity: 0; transform: translateY(10px); }
+           to { opacity: 1; transform: translateY(0); }
+       }
+       .card-hover:hover {
+           transform: translateY(-4px);
+           box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+       }
+   </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+
+   <!-- Navigation Bar -->
+   <nav class="bg-white shadow-md sticky top-0 z-50">
+       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <div class="flex justify-between h-16">
+               <div class="flex items-center">
+                   <i data-lucide="book-open" class="h-8 w-8 text-blue-600 mr-2"></i>
+                   <span class="font-bold text-xl tracking-tight text-gray-900">WikiPariksha</span>
+               </div>
+              
+               <!-- Desktop Menu -->
+               <div class="hidden md:flex items-center space-x-4">
+                   <button onclick="switchTab('home')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition">Home</button>
+                   <button onclick="switchTab('exams')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition">Exams</button>
+                   <button onclick="switchTab('events')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition">Events</button>
+                   <button onclick="switchTab('about')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition">About Us</button>
+               </div>
+
+
+               <!-- Mobile menu button -->
+               <div class="md:hidden flex items-center">
+                   <button onclick="toggleMobileMenu()" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                       <i data-lucide="menu" class="h-6 w-6"></i>
+                   </button>
+               </div>
+           </div>
+       </div>
+
+
+       <!-- Mobile Menu Panel -->
+       <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+           <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+               <button onclick="switchTab('home')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Home</button>
+               <button onclick="switchTab('exams')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Exams</button>
+               <button onclick="switchTab('events')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Events</button>
+               <button onclick="switchTab('about')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">About Us</button>
+           </div>
+       </div>
+   </nav>
+
+
+   <!-- MAIN CONTENT AREA -->
+   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
+
+
+       <!-- 1. HOME TAB -->
+       <div id="home" class="tab-content active">
+           <div class="text-center py-16 lg:py-24">
+               <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                   <span class="block">Master Your Exams</span>
+                   <span class="block text-blue-600">Free & Open Source</span>
+               </h1>
+               <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                   Join India's first community-driven mock test platform. Prepare for JEE, GATE, CAT, and more with questions contributed by toppers and teachers.
+               </p>
+               <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+                   <div class="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
+                       <button onclick="switchTab('exams')" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
+                           Start Practicing
+                       </button>
+                       <button onclick="switchTab('about')" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg md:px-10">
+                           Learn More
+                       </button>
+                   </div>
+               </div>
+           </div>
+
+
+           <!-- Features Grid -->
+           <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+               <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                   <div class="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                       <i data-lucide="code" class="text-blue-600"></i>
+                   </div>
+                   <h3 class="text-lg font-medium text-gray-900">Open Source</h3>
+                   <p class="mt-2 text-gray-500">Transparent algorithms and community-verified questions ensuring 100% accuracy.</p>
+               </div>
+               <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                   <div class="bg-green-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                       <i data-lucide="zap" class="text-green-600"></i>
+                   </div>
+                   <h3 class="text-lg font-medium text-gray-900">Real-Time Mocks</h3>
+                   <p class="mt-2 text-gray-500">Experience the actual exam interface with virtual calculators and timers.</p>
+               </div>
+               <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                   <div class="bg-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                       <i data-lucide="users" class="text-purple-600"></i>
+                   </div>
+                   <h3 class="text-lg font-medium text-gray-900">Community Driven</h3>
+                   <p class="mt-2 text-gray-500">Discuss doubts, challenge answer keys, and grow with peers.</p>
+               </div>
+           </div>
+       </div>
+
+
+       <!-- 2. EXAMS TAB -->
+       <div id="exams" class="tab-content">
+           <h2 class="text-3xl font-bold text-gray-900 mb-8">Select Your Exam</h2>
+          
+           <!-- Search/Filter -->
+           <div class="mb-6">
+               <input type="text" id="examSearch" onkeyup="filterExams()" placeholder="Search for exams (e.g. JEE, Railway)..." class="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+           </div>
+
+
+           <!-- Exam Cards Grid -->
+           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="examGrid">
+               <!-- Exam Card Template (Repeated via JS below) -->
+           </div>
+       </div>
+
+
+       <!-- 3. MOCK LIST (Hidden initially, shown when an exam is clicked) -->
+       <div id="mock-list-view" class="tab-content hidden">
+           <button onclick="backToExams()" class="mb-6 flex items-center text-blue-600 hover:text-blue-800 font-medium">
+               <i data-lucide="arrow-left" class="mr-2 h-4 w-4"></i> Back to Exams
+           </button>
+          
+           <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+               <div class="bg-blue-600 px-6 py-4">
+                   <h2 id="selected-exam-title" class="text-2xl font-bold text-white">Exam Name</h2>
+                   <p class="text-blue-100 text-sm mt-1">Available Mock Tests</p>
+               </div>
+               <div class="p-6">
+                   <div class="overflow-x-auto">
+                       <table class="min-w-full divide-y divide-gray-200">
+                           <thead class="bg-gray-50">
+                               <tr>
+                                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Test Name</th>
+                                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Duration</th>
+                                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Questions</th>
+                                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                               </tr>
+                           </thead>
+                           <tbody class="bg-white divide-y divide-gray-200" id="mock-table-body">
+                               <!-- Mocks inserted via JS -->
+                           </tbody>
+                       </table>
+                   </div>
+                   <div class="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                       <div class="flex">
+                           <div class="flex-shrink-0">
+                               <i data-lucide="alert-triangle" class="h-5 w-5 text-yellow-400"></i>
+                           </div>
+                           <div class="ml-3">
+                               <p class="text-sm text-yellow-700">
+                                   These tests are hosted on external servers. Ensure you have a stable internet connection before starting.
+                               </p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+
+       <!-- 4. EVENTS TAB -->
+       <div id="events" class="tab-content">
+           <h2 class="text-3xl font-bold text-gray-900 mb-6">Upcoming Live Events</h2>
+           <div class="bg-white shadow overflow-hidden sm:rounded-md">
+               <ul class="divide-y divide-gray-200">
+                   <li>
+                       <div class="px-4 py-4 sm:px-6 hover:bg-gray-50 transition cursor-pointer">
+                           <div class="flex items-center justify-between">
+                               <p class="text-sm font-medium text-blue-600 truncate">All India JEE Mains Mock 2026</p>
+                               <div class="ml-2 flex-shrink-0 flex">
+                                   <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Registrations Open</p>
+                               </div>
+                           </div>
+                           <div class="mt-2 sm:flex sm:justify-between">
+                               <div class="sm:flex">
+                                   <p class="flex items-center text-sm text-gray-500">
+                                       <i data-lucide="calendar" class="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400"></i>
+                                       Sunday, Dec 15, 2025
+                                   </p>
+                                   <p class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0 sm:ml-6">
+                                       <i data-lucide="clock" class="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400"></i>
+                                       09:00 AM - 12:00 PM IST
+                                   </p>
+                               </div>
+                               <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
+                                   <button onclick="alert('Registration link coming soon!')" class="text-blue-600 hover:text-blue-900 font-medium">Register Now &rarr;</button>
+                               </div>
+                           </div>
+                       </div>
+                   </li>
+                   <li>
+                       <div class="px-4 py-4 sm:px-6">
+                           <div class="flex items-center justify-between">
+                               <p class="text-sm font-medium text-gray-600 truncate">GATE CS Full Length Test 1</p>
+                               <div class="ml-2 flex-shrink-0 flex">
+                                   <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">Ended</p>
+                               </div>
+                           </div>
+                       </div>
+                   </li>
+               </ul>
+           </div>
+           <div class="mt-4 text-sm text-gray-500">
+               * Note: Live events have limited slots due to server capacity.
+           </div>
+       </div>
+
+
+       <!-- 5. ABOUT TAB -->
+       <div id="about" class="tab-content">
+           <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+               <div class="px-4 py-5 sm:px-6">
+                   <h3 class="text-lg leading-6 font-medium text-gray-900">About WikiPariksha</h3>
+                   <p class="mt-1 max-w-2xl text-sm text-gray-500">Democratizing education through open source technology.</p>
+               </div>
+               <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                   <dl class="sm:divide-y sm:divide-gray-200">
+                       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                           <dt class="text-sm font-medium text-gray-500">Mission</dt>
+                           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">To provide high-quality, free exam preparation tools to every student in India, regardless of their economic background.</dd>
+                       </div>
+                       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                           <dt class="text-sm font-medium text-gray-500">Open Source</dt>
+                           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                               Our platform code is available on GitHub. We believe in transparency. If you are a developer, you can contribute to improve the exam engine.
+                           </dd>
+                       </div>
+                       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                           <dt class="text-sm font-medium text-gray-500">Contact</dt>
+                           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">support@wikipariksha.in</dd>
+                       </div>
+                   </dl>
+               </div>
+           </div>
+       </div>
+
+
+   </main>
+
+
+   <!-- Footer -->
+   <footer class="bg-white border-t mt-12">
+       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+           <p class="text-center text-gray-500 text-sm">
+               &copy; 2025 WikiPariksha. All rights reserved. | Built with ❤️ for Indian Students.
+           </p>
+       </div>
+   </footer>
+
+
+   <!-- JAVASCRIPT LOGIC -->
+   <script>
+       // --- 1. Data Configuration ---
+       // This is where you define your exams. Add more as needed.
+       const examsData = [
+           { id: 'jee', name: 'JEE Mains', category: 'Engineering', icon: 'cpu', color: 'blue', mocks: [
+               { title: 'JEE Mains 2025 - Full Mock 1', duration: '3 Hours', qs: 90, link: 'https://script.google.com/macros/s/AKfycbx7k_fR1Kz2TAjN5Izd2GQuYMfatSc-uY6wtSnl9eMrGGCg30QjnZGAx2QJnwOF9trD/exec' },
+               { title: 'Physics Chapter Wise - Mechanics', duration: '1 Hour', qs: 30, link: '#' }
+           ]},
+           { id: 'gate', name: 'GATE CS', category: 'Engineering', icon: 'server', color: 'green', mocks: [
+               { title: 'GATE CS 2025 - Mock 1', duration: '3 Hours', qs: 65, link: '#' }
+           ]},
+           { id: 'cat', name: 'CAT', category: 'Management', icon: 'briefcase', color: 'purple', mocks: [
+                { title: 'CAT Verbal Ability Mock', duration: '40 Mins', qs: 24, link: '#' }
+           ]},
+           { id: 'neet', name: 'NEET UG', category: 'Medical', icon: 'heart-pulse', color: 'red', mocks: []},
+           { id: 'upsc', name: 'UPSC Prelims', category: 'Civil Services', icon: 'landmark', color: 'yellow', mocks: []},
+           { id: 'ssc', name: 'SSC CGL', category: 'Govt Jobs', icon: 'file-text', color: 'indigo', mocks: []},
+           { id: 'rrb', name: 'Railways (RRB)', category: 'Govt Jobs', icon: 'train', color: 'orange', mocks: []},
+           { id: 'kvs', name: 'KVS TGT/PGT', category: 'Teaching', icon: 'book', color: 'pink', mocks: []}
+       ];
+
+
+       // --- 2. Icon Mapping (Lucide) ---
+       // Lucide icons render automatically, but we need to initialize them
+       lucide.createIcons();
+
+
+       // --- 3. Tab Switching Logic ---
+       function switchTab(tabId) {
+           // Hide all content
+           document.querySelectorAll('.tab-content').forEach(el => {
+               el.classList.remove('active');
+               el.classList.add('hidden'); // Explicitly add hidden
+               // Remove hidden only if active
+               if(el.id === tabId) {
+                   el.classList.remove('hidden');
+                   setTimeout(() => el.classList.add('active'), 10); // Small delay for transition
+               }
+           });
+          
+           // Mobile menu toggle logic
+           const mobileMenu = document.getElementById('mobile-menu');
+           if (!mobileMenu.classList.contains('hidden')) {
+               mobileMenu.classList.add('hidden');
+           }
+       }
+
+
+       function toggleMobileMenu() {
+           const menu = document.getElementById('mobile-menu');
+           menu.classList.toggle('hidden');
+       }
+
+
+       // --- 4. Render Exams ---
+       function renderExams() {
+           const grid = document.getElementById('examGrid');
+           grid.innerHTML = '';
+
+
+           examsData.forEach(exam => {
+               const card = document.createElement('div');
+               card.className = `bg-white rounded-xl shadow-sm border border-gray-200 p-6 card-hover transition cursor-pointer`;
+               card.onclick = () => openMockList(exam.id);
+              
+               // Color classes
+               const bgClass = `bg-${exam.color}-100`;
+               const textClass = `text-${exam.color}-600`;
+
+
+               card.innerHTML = `
+                   <div class="flex items-center justify-between mb-4">
+                       <div class="${bgClass} p-3 rounded-lg">
+                           <i data-lucide="${exam.icon}" class="${textClass} w-6 h-6"></i>
+                       </div>
+                       <span class="text-xs font-semibold tracking-wide uppercase text-gray-400">${exam.category}</span>
+                   </div>
+                   <h3 class="text-xl font-bold text-gray-900">${exam.name}</h3>
+                   <p class="text-gray-500 text-sm mt-2">${exam.mocks.length} Tests Available</p>
+                   <div class="mt-4 flex items-center text-blue-600 text-sm font-medium">
+                       View Tests <i data-lucide="arrow-right" class="ml-1 w-4 h-4"></i>
+                   </div>
+               `;
+               grid.appendChild(card);
+           });
+           lucide.createIcons(); // Re-render icons
+       }
+
+
+       // --- 5. Mock List Logic ---
+       function openMockList(examId) {
+           const exam = examsData.find(e => e.id === examId);
+           if(!exam) return;
+
+
+           document.getElementById('selected-exam-title').innerText = exam.name;
+           const tbody = document.getElementById('mock-table-body');
+           tbody.innerHTML = '';
+
+
+           if(exam.mocks.length === 0) {
+               tbody.innerHTML = `<tr><td colspan="4" class="px-6 py-4 text-center text-gray-500">No mock tests added yet. Check back soon!</td></tr>`;
+           } else {
+               exam.mocks.forEach(mock => {
+                   const tr = document.createElement('tr');
+                   tr.innerHTML = `
+                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${mock.title}</td>
+                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${mock.duration}</td>
+                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${mock.qs} Qs</td>
+                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                           <a href="${mock.link}" target="_blank" class="text-blue-600 hover:text-blue-900 bg-blue-50 px-3 py-1 rounded-full hover:bg-blue-100 transition">Start Test</a>
+                       </td>
+                   `;
+                   tbody.appendChild(tr);
+               });
+           }
+
+
+           // Switch views
+           document.getElementById('exams').classList.remove('active');
+           document.getElementById('exams').classList.add('hidden');
+          
+           const listView = document.getElementById('mock-list-view');
+           listView.classList.remove('hidden');
+           setTimeout(() => listView.classList.add('active'), 10);
+       }
+
+
+       function backToExams() {
+           const listView = document.getElementById('mock-list-view');
+           listView.classList.remove('active');
+           listView.classList.add('hidden');
+          
+           const examsView = document.getElementById('exams');
+           examsView.classList.remove('hidden');
+           setTimeout(() => examsView.classList.add('active'), 10);
+       }
+
+
+       // --- 6. Search Filter ---
+       function filterExams() {
+           const input = document.getElementById('examSearch').value.toUpperCase();
+           const cards = document.getElementById('examGrid').children;
+          
+           for (let i = 0; i < cards.length; i++) {
+               const title = cards[i].getElementsByTagName("h3")[0];
+               const txtValue = title.textContent || title.innerText;
+               if (txtValue.toUpperCase().indexOf(input) > -1) {
+                   cards[i].style.display = "";
+               } else {
+                   cards[i].style.display = "none";
+               }
+           }
+       }
+
+
+       // Initialize
+       renderExams();
+       // Ensure Home is visible on load
+       switchTab('home');
+
+
+   </script>
+</body>
+</html>
